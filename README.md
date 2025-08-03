@@ -35,7 +35,7 @@ You can also set default values in `config.xml`.
 
 ## 📦 Installation
 
-1. Copy the module to `app/code/Vendor/ModuleName`
+1. Copy the module files to `app/code/Study/Meme`
 2. Run the following Magento CLI commands:
 
 ```bash

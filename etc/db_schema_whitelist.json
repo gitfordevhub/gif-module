@@ -1,0 +1,12 @@
+{
+    "quote": {
+        "column": {
+            "gif_url": true
+        }
+    },
+    "sales_order": {
+        "column": {
+            "gif_url": true
+        }
+    }
+}

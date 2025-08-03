@@ -1,0 +1,44 @@
+<?php
+
+use Magento\Framework\Escaper;
+use Study\Meme\Block\Adminhtml\Edit\Tab\View;
+use Study\Meme\ViewModel\Account\Order\Gif;
+
+/** @var Gif $viewModel */
+/** @var View $block */
+/** @var Escaper $escaper */
+
+$viewModel = $block->getData('view_model');
+$customerId = $block->getCustomerId();
+$gifUrls = $viewModel->getGifUrls((int)$customerId);
+?>
+
+<?php if (!empty($gifUrls)): ?>
+    <h2><p><b><?= __('Selected Gif') ?></b></p></h2>
+    <img src="<?= $escaper->escapeHtmlAttr(reset($gifUrls)); ?>" alt="Gif" style="width:150px; height:150px; margin-bottom: 20px;" />
+
+    <h2><p><b><?= __('All Gifs') ?></b></p></h2>
+
+    <form method="post" action="<?= $block->getUrl('meme/customer/savegif') ?>">
+        <?= $block->getBlockHtml('formkey') ?>
+        <input type="hidden" name="customer_id" value="<?= (int)$customerId ?>" />
+        <input type="hidden" name="gif_urls" value="<?= $escaper->escapeHtmlAttr(json_encode($gifUrls)) ?>" />
+        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+            <?php foreach ($gifUrls as $url): ?>
+                <?php if (!empty($url)): ?>
+                    <label style="display: flex; flex-direction: column; align-items: center;">
+                        <img src="<?= $escaper->escapeHtmlAttr($url); ?>" alt="Gif"
+                             style="width:150px; height:150px; margin-bottom: 10px" />
+                        <input type="radio" name="selected_gif" value="<?= $escaper->escapeHtmlAttr($url); ?>"
+                            <?= $url === reset($gifUrls) ? 'checked' : '' ?> />
+                    </label>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+        <button type="submit" style="margin-top: 20px;">Save Selected Gif</button>
+    </form>
+<?php else: ?>
+    <h2><p><b><?= __('No GIFs found') ?></b></p></h2>
+<?php endif; ?>
+
+

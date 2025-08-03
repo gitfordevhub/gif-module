@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <htmlContent name="customer_edit_tab_view_content1">
+        <!--<block class="Magento\Customer\Block\Adminhtml\Edit\Tab\View">-->
+        <block class="Study\Meme\Block\Adminhtml\Edit\Tab\View" name="meme_tab" template="Study_Meme::tab/view.phtml">
+            <arguments>
+                <argument name="sort_order" xsi:type="number">10</argument>
+                <argument name="tab_label" xsi:type="string" translate="true">Meme</argument>
+                <argument name="view_model" xsi:type="object">Study\Meme\ViewModel\Account\Order\Gif</argument>
+            </arguments>
+        </block>
+    </htmlContent>
+</form>
+
+
+

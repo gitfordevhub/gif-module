@@ -1,0 +1,18 @@
+<?php
+
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use Study\Meme\ViewModel\Account\Order\Gif;
+
+/** @var Template $block */
+/** @var Escaper $escaper */
+/** @var Gif $viewModel */
+
+$viewModel = $block->getData('view_model');
+$gifUrls = $viewModel->getGifUrls();
+?>
+
+<?php if (!empty($gifUrls)): ?>
+    <h2><p><b><?= __('Gif Image') ?></b></p></h2>
+    <img src="<?= $escaper->escapeHtmlAttr(reset($gifUrls)); ?>" alt="Gif" style="width:150px; height:150px;" />
+<?php endif; ?>

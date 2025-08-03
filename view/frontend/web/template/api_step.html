@@ -1,0 +1,33 @@
+<li id="api_step" data-bind="fadeVisible: isVisible">
+    <div class="step-title" data-bind="i18n: 'Step Gifs'" data-role="title"></div>
+    <div id="checkout-step-title"
+         class="step-content"
+         data-role="content">
+
+        <div data-bind="visible: apiLoadFailed" style="color: red; margin-bottom: 15px;">
+            <strong data-bind="text: errorMessage"></strong>
+        </div>
+
+        <div class="giphy-images" data-bind="visible: !apiLoadFailed() && giphyImages().length > 0">
+            <!-- ko foreach: giphyImages -->
+            <div style="display:inline-block; margin: 10px;">
+                <img
+                    data-bind="attr: { src: $data },
+                               css: { 'selected-gif': $data === $parent.selectedGif() },
+                               click: function() { $parent.selectGif($data) }"
+                    style="width: 150px; height: 150px; cursor: pointer; border: 2px solid transparent;">
+            </div>
+            <!-- /ko -->
+        </div>
+
+        <form data-bind="submit: navigateToNextStep" novalidate="novalidate">
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <button data-role="opc-continue" type="submit" class="button action continue primary">
+                        <span><!-- ko i18n: 'Next'--><!-- /ko --></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</li>
